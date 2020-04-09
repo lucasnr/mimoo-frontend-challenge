@@ -10,8 +10,9 @@ const Button = styled.button`
   display: flex;
   font-size: 1.25rem;
   font-weight: 600;
-  height: 3.125rem;
   justify-content: center;
+  line-height: 1;
+  padding: 1rem;
   width: 100%;
 `;
 
