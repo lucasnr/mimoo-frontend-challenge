@@ -1,5 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-export default function src() {
-  return <h1>Goodbye World</h1>;
+import GlobalStyle from './styles/GlobalStyle';
+import Routes from './routes';
+
+export default function App() {
+  return (
+    <Router>
+      <GlobalStyle />
+      <Routes />
+    </Router>
+  );
 }
