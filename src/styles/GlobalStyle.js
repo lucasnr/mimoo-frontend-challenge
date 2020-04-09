@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #fff;
     color: #3A3A3A;
+    overflow-y: scroll;
   }
 
   body, input, button, textarea {
@@ -37,6 +38,9 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
   
+  ul {
+    list-style: none;
+  }
 `;
 
 export default GlobalStyle;

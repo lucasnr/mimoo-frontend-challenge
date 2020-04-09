@@ -20,6 +20,7 @@ export const Logo = styled.img`
 
 Logo.defaultProps = {
   src: logo,
+  alt: 'Logomarca da Mimoo',
 };
 
 export const Title = styled.h1`
