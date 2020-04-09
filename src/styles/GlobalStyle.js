@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0px;
+    outline: none;
     padding: 0px;
   }
 
@@ -17,8 +18,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   main {
+    display: flex;
+    flex-direction: column;
     margin: auto;
     max-width: 25.875rem;
+    min-height: 100vh;
     overflow: hidden;
     width: 100%;
   }
@@ -29,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: inherit;
+    display: flex;
     text-decoration: none;
   }
   
