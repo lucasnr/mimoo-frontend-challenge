@@ -3,6 +3,8 @@ import Quagga from 'quagga';
 
 export default class Scanner extends Component {
 	componentDidMount() {
+		const { onError } = this.props;
+
 		Quagga.init(
 			{
 				inputStream: {
@@ -25,7 +27,7 @@ export default class Scanner extends Component {
 			},
 			function (err) {
 				if (err) {
-					return alert(err);
+					return onError(err);
 				}
 				Quagga.start();
 			}
@@ -50,15 +52,15 @@ export default class Scanner extends Component {
 				style={{ position: 'relative' }}
 			>
 				<video
-					class="videoCamera"
-					autoplay="true"
+					className="videoCamera"
+					autoPlay={true}
 					preload="auto"
 					src=""
-					muted="true"
-					playsinline="true"
+					muted={true}
+					playsInline={true}
 				></video>
 				<canvas
-					class="drawingBuffer"
+					className="drawingBuffer"
 					style={{ position: 'absolute', top: 0, left: 0 }}
 				></canvas>
 			</div>

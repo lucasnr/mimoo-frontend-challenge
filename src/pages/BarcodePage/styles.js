@@ -73,3 +73,37 @@ export const ScannedCode = styled.h4`
 	padding: 0px 2rem 2rem 2rem;
 	z-index: 5;
 `;
+
+const FullPageText = styled.h2`
+	align-items: center;
+	display: flex;
+	font-size: 2rem;
+	font-weight: 700;
+	flex: 1;
+	flex-direction: column;
+	padding: 2rem;
+	justify-content: center;
+	text-align: center;
+`;
+
+export const Error = styled(FullPageText)`
+	color: #e44;
+
+	small {
+		color: #3a3a3a;
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin-top: 0.5rem;
+	}
+`;
+
+export const Loading = styled(FullPageText)`
+	background-color: #fff;
+	color: #44e;
+	left: 0px;
+	min-height: 100vh;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 10;
+`;

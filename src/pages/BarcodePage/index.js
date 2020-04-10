@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -15,12 +15,16 @@ import {
 	ScannerFooter,
 	ScannedLabel,
 	ScannedCode,
+	Error,
+	Loading,
 } from './styles';
 
 import { colorPrimary } from '../../styles/colors';
 
 export default function BarcodePage() {
 	const [scanned, setScanned] = useState();
+	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const handleDetected = useCallback((result) => {
 		setScanned(result.codeResult.code);
@@ -30,6 +34,12 @@ export default function BarcodePage() {
 	const handleClick = useCallback(() => {
 		history.push('/identified-product');
 	}, [history]);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 2000);
+	}, []);
 
 	return (
 		<Container>
@@ -41,21 +51,38 @@ export default function BarcodePage() {
 				<Title>Escanear Produto</Title>
 			</Header>
 
-			<ScannerContainer>
-				<Scanner onDetected={handleDetected} />
-				<ScannerContent>
-					<ScannerHeader>Escaneando o código de barras</ScannerHeader>
-					<ScannerSides />
-					<ScannerFooter></ScannerFooter>
-				</ScannerContent>
-			</ScannerContainer>
+			{error ? (
+				<Error>
+					Ocorreu um erro ao acessar a câmera do seu dispositivo.
+					<small>
+						Certifique-se de que você deu permissão e de que sua câmera está
+						funcionando corretamente.
+					</small>
+				</Error>
+			) : (
+				<>
+					{loading && <Loading>Carregando</Loading>}
 
-			<ScannedLabel>Número do código de barras:</ScannedLabel>
-			<ScannedCode>{scanned || '000000000000000'}</ScannedCode>
+					<ScannerContainer>
+						<Scanner
+							onDetected={handleDetected}
+							onError={() => setError(true)}
+						/>
+						<ScannerContent>
+							<ScannerHeader>Escaneando o código de barras</ScannerHeader>
+							<ScannerSides />
+							<ScannerFooter />
+						</ScannerContent>
+					</ScannerContainer>
 
-			<Button onClick={handleClick} variant>
-				Confirmar
-			</Button>
+					<ScannedLabel>Número do código de barras:</ScannedLabel>
+					<ScannedCode>{scanned || '000000000000000'}</ScannedCode>
+
+					<Button onClick={handleClick} variant>
+						Confirmar
+					</Button>
+				</>
+			)}
 		</Container>
 	);
 }
