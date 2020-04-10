@@ -5,14 +5,20 @@ import HomePage from './pages/HomePage';
 import NamePage from './pages/NamePage';
 import ProductsPage from './pages/ProductsPage';
 import BarcodePage from './pages/BarcodePage';
+import IdentifiedProductPage from './pages/IdentifiedProductPage';
 
 export default function Routes() {
-  return (
-    <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/name" exact component={NamePage} />
-      <Route path="/products" exact component={ProductsPage} />
-      <Route path="/barcode" exact component={BarcodePage} />
-    </Switch>
-  );
+	return (
+		<Switch>
+			<Route path="/" exact component={HomePage} />
+			<Route path="/name" exact component={NamePage} />
+			<Route path="/products" exact component={ProductsPage} />
+			<Route path="/barcode" exact component={BarcodePage} />
+			<Route
+				path="/identified-product"
+				exact
+				component={IdentifiedProductPage}
+			/>
+		</Switch>
+	);
 }
