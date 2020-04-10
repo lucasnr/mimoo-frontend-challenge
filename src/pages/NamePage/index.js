@@ -7,18 +7,20 @@ import { Container, Title, Input } from './styles';
 import { colorPrimary } from '../../styles/colors';
 
 export default function NamePage() {
-  return (
-    <main>
-      <Container>
-        <FaArrowLeft size={23} color={colorPrimary} />
+	return (
+		<main>
+			<Container>
+				<Link to="/">
+					<FaArrowLeft size={23} color={colorPrimary} />
+				</Link>
 
-        <Title>Informe seu nome</Title>
-        <Input name="name" />
-      </Container>
+				<Title>Informe seu nome</Title>
+				<Input name="name" />
+			</Container>
 
-      <Link to="/products">
-        <Button>Continuar</Button>
-      </Link>
-    </main>
-  );
+			<Link to="/products">
+				<Button>Continuar</Button>
+			</Link>
+		</main>
+	);
 }

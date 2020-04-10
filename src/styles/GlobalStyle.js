@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     max-width: 25.875rem;
     min-height: 100vh;
     overflow: hidden;
+		position: relative;
     width: 100%;
   }
 
@@ -37,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     text-decoration: none;
   }
-  
+
   ul {
     list-style: none;
   }
