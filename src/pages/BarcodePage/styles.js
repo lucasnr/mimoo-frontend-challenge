@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
+import WidthContainer from '../../components/WidthContainer';
 import { colorPrimary } from '../../styles/colors';
+
+export const Container = styled(WidthContainer)`
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+`;
 
 export const Header = styled.header`
 	align-items: center;

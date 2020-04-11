@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
-import Container from '../../components/WidthContainer';
 import Button from '../../components/Button';
 import Scanner from './Scanner';
 import {
+	Container,
 	Header,
 	Title,
 	ScannerContainer,
@@ -45,12 +45,6 @@ export default function BarcodePage() {
 		if (hasStagedProduct) history.push('/identified-product');
 	}, [hasStagedProduct, history]);
 
-	useEffect(() => {
-		setTimeout(() => {
-			setLoading(false);
-		}, 5000);
-	}, []);
-
 	return (
 		<main>
 			<Container>
@@ -78,6 +72,7 @@ export default function BarcodePage() {
 							<Scanner
 								onDetected={handleDetected}
 								onError={() => setError(true)}
+								onLoad={() => setLoading(false)}
 							/>
 							<ScannerContent>
 								<ScannerHeader>Escaneando o código de barras</ScannerHeader>

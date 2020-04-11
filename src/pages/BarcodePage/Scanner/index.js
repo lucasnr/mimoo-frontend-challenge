@@ -3,7 +3,7 @@ import Quagga from 'quagga';
 
 export default class Scanner extends Component {
 	componentDidMount() {
-		const { onError } = this.props;
+		const { onError, onLoad } = this.props;
 
 		Quagga.init(
 			{
@@ -30,6 +30,7 @@ export default class Scanner extends Component {
 					return onError(err);
 				}
 				Quagga.start();
+				onLoad();
 			}
 		);
 		Quagga.onDetected(this._onDetected);

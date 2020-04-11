@@ -6,6 +6,7 @@ import illustration from '../../assets/img/Illustracao.png';
 import logo from '../../assets/img/Logo.png';
 
 export const Container = styled.section`
+	flex: 1;
 	padding: 2.25rem;
 	padding-bottom: 1rem;
 	width: 100%;
