@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
+import WidthContainer from '../../components/WidthContainer';
+
 export const Wrapper = styled.main`
 	background-color: #dfbf94;
 	display: flex;
 	flex-direction: column;
 `;
 
-export const Container = styled.section`
+export const Container = styled(WidthContainer)`
 	flex: 1;
 	padding: 2.75rem 3.75rem 1rem 3.75rem;
 `;

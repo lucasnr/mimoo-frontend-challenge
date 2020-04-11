@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 
+import WidthContainer from '../../components/WidthContainer';
 import { colorPrimary } from '../../styles/colors';
 
-export const Container = styled.section`
+export const Container = styled(WidthContainer)`
 	padding: 1.875rem 2.25rem;
 `;
 

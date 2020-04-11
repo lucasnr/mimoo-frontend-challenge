@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 import { colorPrimary } from '../../styles/colors';
 
-export const Container = styled.main``;
-
 export const Header = styled.header`
 	align-items: center;
 	display: flex;

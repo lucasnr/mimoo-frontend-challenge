@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
+import WidthContainer from '../../components/WidthContainer';
 import { colorPrimary } from '../../styles/colors';
 
-export const Container = styled.section`
+export const Container = styled(WidthContainer)`
 	padding: 2rem 2.5rem;
 	padding-bottom: 0px;
 `;
@@ -22,6 +23,7 @@ export const Form = styled.form`
 `;
 
 export const InputContainer = styled.div`
+	margin-bottom: 1rem;
 	padding-left: 2.5rem;
 	padding-right: 2.5rem;
 `;
@@ -29,8 +31,10 @@ export const InputContainer = styled.div`
 export const Input = styled.input`
 	border: none;
 	border-bottom: 1px solid ${colorPrimary};
+	display: block;
 	font-size: 1.375rem;
 	padding: 0.5rem 0px;
-	margin-bottom: 1rem;
+	margin: auto;
+	max-width: 20.875rem;
 	width: 100%;
 `;

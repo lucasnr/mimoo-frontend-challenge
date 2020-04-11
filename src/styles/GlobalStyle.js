@@ -21,8 +21,6 @@ const GlobalStyle = createGlobalStyle`
   main {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    max-width: 25.875rem;
     min-height: 100vh;
     overflow: hidden;
 		position: relative;
