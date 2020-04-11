@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Button from '../../components/Button';
@@ -15,10 +15,13 @@ import {
 
 export default function IdentifiedProductPage() {
 	const history = useHistory();
-	const product = useSelector((state) => state.product.staging);
+	const dispatch = useDispatch();
+	const product = useSelector((state) => state.product.staged);
+
 	const handleClick = useCallback(() => {
+		dispatch({ type: 'UNSTAGE_PRODUCT' });
 		history.push('/products');
-	}, [history]);
+	}, [dispatch, history]);
 
 	const { name, image } = product;
 	return (
