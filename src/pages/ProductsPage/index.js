@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { FaStar, FaPlus } from 'react-icons/fa';
 
 import ProductList from './ProductList';
@@ -14,72 +15,62 @@ import {
 } from './styles';
 
 export default function ProductsPage() {
-	const [products, setProducts] = useState({
-		type: 'SKIN_CARE',
-		items: [{ id: 1 }, { id: 2 }, { id: 3 }],
-	});
+	const user = useSelector((state) => state.user);
+	const [tab, setTab] = useState(user.products[0].category);
+	const { products, name } = user;
 
-	const handleSkinCareCheck = useCallback(() => {
-		setProducts({
-			type: 'SKIN_CARE',
-			items: [{ id: 1 }, { id: 2 }, { id: 3 }],
-		});
-	}, []);
+	const points = useMemo(() => {
+		const allProducts = products
+			.map((product) => product.brands)
+			.flat()
+			.map((brand) => brand.products)
+			.flat();
 
-	const handleSnacksCheck = useCallback(() => {
-		setProducts({
-			type: 'SNACKS',
-			items: [{ id: 1 }, { id: 2 }],
-		});
-	}, []);
+		return allProducts.length * 100;
+	}, [products]);
 
 	return (
 		<main>
 			<Container>
-				<Title>Olá Carol</Title>
+				<Title>Olá {name}</Title>
 				<Subtitle>Adicione mais produtos à sua lista e ganhe pontos</Subtitle>
 
 				<Points>
 					<FaStar size={14} />
 					<span>Pontos</span>
-					<Value>100</Value>
+					<Value>{points}</Value>
 				</Points>
 
 				<Tabs>
-					<input
-						type="radio"
-						name="tab"
-						id="skin-care"
-						defaultChecked
-						onChange={handleSkinCareCheck}
-					/>
-					<TabLabel htmlFor="skin-care">Skin Care</TabLabel>
-
-					<input
-						type="radio"
-						name="tab"
-						id="snacks"
-						onChange={handleSnacksCheck}
-					/>
-					<TabLabel htmlFor="snacks">Snacks</TabLabel>
+					{products.map((item, index) => (
+						<React.Fragment key={item.category}>
+							<input
+								type="radio"
+								name="tab"
+								id={item.category}
+								defaultChecked={index === 0}
+								onChange={() => setTab(item.category)}
+							/>
+							<TabLabel htmlFor={item.category}>{item.category}</TabLabel>
+						</React.Fragment>
+					))}
 				</Tabs>
 
-				{products.type === 'SKIN_CARE' && (
-					<ProductList
-						brand="NIVEA"
-						itemBg={'#ceb5ab'}
-						items={products.items}
-					/>
-				)}
-
-				{products.type === 'SNACKS' && (
-					<ProductList
-						brand="Nestlé"
-						itemBg={'#ABC3CE'}
-						items={products.items}
-					/>
-				)}
+				{products.map((product, productIndex) => (
+					<React.Fragment key={`product-${productIndex}`}>
+						{product.brands.map((brand) => (
+							<ProductList
+								key={brand.name}
+								brand={brand.name}
+								itemBg={productIndex % 2 ? '#ABC3CE' : '#ceb5ab'}
+								items={brand.products}
+								display={product.category === tab ? 1 : 0}
+							/>
+						))}
+					</React.Fragment>
+				))}
 			</Container>
+
 			<Link to="/barcode">
 				<FaPlus size={32} />
 			</Link>

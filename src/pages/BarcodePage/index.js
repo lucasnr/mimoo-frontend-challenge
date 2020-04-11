@@ -1,4 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -18,8 +19,9 @@ import {
 	Error,
 	Loading,
 } from './styles';
-
 import { colorPrimary } from '../../styles/colors';
+
+import api from '../../services/api';
 
 export default function BarcodePage() {
 	const [scanned, setScanned] = useState();
@@ -31,14 +33,21 @@ export default function BarcodePage() {
 	}, []);
 
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const handleClick = useCallback(() => {
-		history.push('/identified-product');
-	}, [history]);
+		api.get(`/products/${scanned}`).then(({ data }) => {
+			dispatch({
+				type: 'STAGE_PRODUCT',
+				product: data,
+			});
+			history.push('/identified-product');
+		});
+	}, [dispatch, history, scanned]);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setLoading(false);
-		}, 2000);
+		}, 5000);
 	}, []);
 
 	return (
